@@ -1,0 +1,82 @@
+TOTAL_EPOCH: 25
+LOG_INTERVAL: 100
+METHOD: base
+DATASET:
+  TRAIN:
+    NAME: dsec
+    PARAMS:
+      split: train
+      sampling_ratio: 1
+      crop_height: 432
+      crop_width: 576
+      event_cfg:
+        NAME: sbn
+        PARAMS:
+          num_of_event: 500000
+          stack_method: TencodeEventStacking
+          stack_size: 3
+          use_preprocessed_image: False
+          normalize: True
+      disparity_cfg:
+        NAME: base
+        PARAMS: { }
+  TEST:
+    NAME: dsec
+    PARAMS:
+      split: test
+      sampling_ratio: 1
+      crop_height: 480
+      crop_width: 648
+      event_cfg:
+        NAME: sbn
+        PARAMS:
+          num_of_event: 500000
+          stack_method: TencodeEventStacking
+          stack_size: 3
+          use_preprocessed_image: False
+          normalize: True
+      disparity_cfg:
+        NAME: none
+        PARAMS: { }
+DATALOADER:
+  TRAIN:
+    NAME: get_multi_epochs_dataloader
+    PARAMS:
+      batch_size: 4
+      shuffle: True
+      drop_last: True
+  TEST:
+    NAME: get_sequence_dataloader
+    PARAMS:
+      batch_size: 4
+      shuffle: False
+      drop_last: False
+MODEL:
+  NAME: EventStereoMatchingNetwork
+  PARAMS:
+    backbone: StereoMatchingNetwork
+    skip_concentration_net: True
+    concentration_net:
+      PARAMS:
+        in_channels: 3
+        attention_method: soft
+        base_channels: 32
+    disparity_estimator:
+      PARAMS:
+        lidarinput: False
+        in_channels: 3
+        max_disp: 192
+        refine_channels: 3
+OPTIMIZER:
+  NAME: Adam
+  PARAMS:
+    lr: 0.0005
+    weight_decay: 0.0001
+SCHEDULER:
+  NAME: CosineAnnealingWarmupRestarts
+  PARAMS:
+    cycle_mult: 1.0
+    first_cycle_steps: 100
+    gamma: 1.0
+    lr_ratio: 0.0001
+    warmup_steps: 3
