@@ -101,9 +101,9 @@ Please refer to each section for detailed instructions on setup and execution.
 
 1. **Dependencies**: Ensure that you have installed all the necessary dependencies. The list of dependencies can be found in the `./requirements.txt` file.
 2. **Build deform_conv**: 
-  - Activate your virtual env
-  - `cd ./src/components/models/baseline/deform_conv/`
-  - `setup.py build_ext --inplace`
+    - Activate your virtual env
+    - `cd ./src/components/models/baseline/deform_conv/`
+    - `setup.py build_ext --inplace`
 
 
 ## :floppy_disk: Datasets
