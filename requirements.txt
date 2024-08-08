@@ -17,3 +17,7 @@ torchvision==0.10.0+cu111
 tqdm
 typing_extensions
 yacs
+klampt
+open3d
+ouster-sdk
+requests

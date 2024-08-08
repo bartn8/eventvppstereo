@@ -73,7 +73,6 @@ literature on [DSEC](https://dsec.ifi.uzh.ch/) and [M3ED](https://m3ed.io/) data
 }
 ```
 
-
 ## :inbox_tray: Pretrained Models
 
 Here, you can download the weights of the baseline architecture trained on [DSEC](https://dsec.ifi.uzh.ch/) with eight different stacking representations.
@@ -81,7 +80,7 @@ Here, you can download the weights of the baseline architecture trained on [DSEC
 To use these weights, please follow these steps:
 
 1. Install [GDown](https://github.com/wkentaro/gdown) python package: `pip install gdown`
-2. Download all weights from our drive : `gdown --folder <folder_link>` (`<folder_link>` will be provided soon)
+2. Download all weights from our drive : `gdown --folder https://drive.google.com/drive/folders/1wh2m2LB9DRmBCJ_scHy5Wbq6nstyxCg1?usp=sharing`
 
 ## :memo: Code
 
@@ -108,18 +107,18 @@ Please refer to each section for detailed instructions on setup and execution.
 
 
 ## :floppy_disk: Datasets
-We used seven datasets for training and evaluation.
+We used two datasets for training and evaluation.
 
 ### DSEC
 
 Download [DSEC](https://dsec.ifi.uzh.ch/) (`train_events.zip` `train_disparity.zip` and `train_calibration.zip`) and extract them.
 
-Next, we will provide soon preprocessed DSEC raw LiDAR scans:
+Next, you have to download in the same DSEC folder our preprocessed DSEC raw LiDAR scans:
 
 ```bash
-$ cd PATH_TO_DSEC
-$ gdown <folder_link>
-$ unzip dsec_raw.zip
+cd PATH_TO_DSEC
+gdown https://drive.google.com/file/d/1iYApCcGuk8RIL9aLchDDnvK4fe3qcTRk/view?usp=sharing
+unzip dsec_raw.zip
 ```
 
 After that, you will get a data structure as follows:
@@ -164,7 +163,42 @@ The original [DSEC license](https://dsec.ifi.uzh.ch/#:~:text=3DV%29%7D%2C%0A%20%
 
 ### M3ED
 
-We will provide soon the preprocessing script for M3ED.
+Download [M3ED](https://m3ed.io/) dataset using our modified script ([original script](https://raw.githubusercontent.com/daniilidis-group/m3ed/main/tools/download_m3ed.py)):
+
+```bash
+python src/download_m3ed_val.py --to_download data depth_gt --output_dir PATH_TO_M3ED_H5_FILES
+```
+
+After that, you will get a data structure as follows:
+
+```
+m3ed_h5
+├── car_forest_tree_tunnel
+│   ├── car_forest_tree_tunnel_data.h5
+|   └── car_forest_tree_tunnel_depth_gt.h5
+...
+```
+
+Convert H5 files using our preprocessing script:
+
+```bash
+python src/m3ed_converter.py -i PATH_TO_M3ED_H5_FILES -o PATH_TO_M3ED --max_offset_us 100000
+```
+
+After the conversion, you will get a data structure as follows:
+
+```
+m3ed
+├── car_forest_tree_tunnel
+│   ├── calibration
+│   ├── disparity
+|   └── events
+...
+```
+
+The script emulates the data structure of DSEC. 
+However, it additionally adds groundtruth and raw scans with different time offsets to replicate experiments in figure 8 and 9.
+Check the `disparity` folders and look for `event_raw_{i}` with `i=2899,13321,32504,61207,100000`.
 
 We managed to extract raw LiDAR using only data from the [official website](https://github.com/daniilidis-group/m3ed).
 
@@ -172,7 +206,25 @@ We managed to extract raw LiDAR using only data from the [official website](http
 
 This code snippet allows you to evaluate the disparity maps on [DSEC](https://dsec.ifi.uzh.ch/) and [M3ED](https://m3ed.io/) datasets. By executing the provided script, you can assess the accuracy of disparity estimation models on these datasets.
 
-We will provide soon the code for evaluation.
+We provide six bash script to evaluate results of table 1,2,3,4 and figure 8,9.
+
+To run an evaluation script, follow the istructions below:
+
+1. **Run the test**:
+   - Open a terminal or command prompt.
+   - Navigate to the directory containing this repository.
+   - Enable your virtual env with the required libraries.
+
+2. **Execute the command**:
+   Each script has parameters that you should set: 1) environment settings: set the path to your virtualenv/conda; 2) set `DATA_PATH` variable to the dataset path; 3) set `WEIGHTS_PATH` variable to the path where you downloaded our pretrained checkpoints.
+
+   After that you can launch an evaluation script (for example Tab. 1 evaluation script):
+
+   ```bash
+    ./scripts/evaluate_table_1.sh
+   ```
+
+For more details about available arguments, please refer to the `inference.py` script.
 
 ## :art: Qualitative Results
 

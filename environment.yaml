@@ -29,6 +29,10 @@ dependencies:
       - setuptools==59.5.0
       - tensorboard==2.5.0  
       - tqdm
+      - klampt
+      - ouster-sdk
+      - open3d
+      - requests
       - typing_extensions==4.7.1
       - yacs==0.1.8 
       - --find-links https://download.pytorch.org/whl/torch_stable.html
