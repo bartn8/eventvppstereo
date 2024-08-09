@@ -15,7 +15,7 @@ University of Bologna<sup>2</sup>
 
  LiDAR-Event Stereo Fusion with Hallucinations (ECCV 2024)<br>
 
- [Project Page](https://eventvppstereo.github.io/) | [Paper](https://eventvppstereo.github.io/assets/paper.pdf) |  [Supplementary](https://eventvppstereo.github.io/assets/paper-supp.pdf)
+ [Project Page](https://eventvppstereo.github.io/) | [Paper](https://arxiv.org/abs/2408.04633) 
 </h2>
 
 **Note**: 🚧 Kindly note that this repository is currently in the development phase. We are actively working to add and refine features and documentation. We apologize for any inconvenience caused by incomplete or missing elements and appreciate your patience as we work towards completion.
