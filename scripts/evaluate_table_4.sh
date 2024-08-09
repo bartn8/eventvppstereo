@@ -1,19 +1,18 @@
 #!/bin/bash
 
 # Enable and edit the following two lines of code in case you're using conda
-source "$CONDA_PREFIX/../../etc/profile.d/conda.sh"
+# source "$CONDA_PREFIX/../../etc/profile.d/conda.sh"
 # conda activate your_virtual_conda_env
-conda activate evpp
 
 # Enable and edit the following line of code in case you're using virtualenv
 # source "/path/to/your/virtualenv/bin/activate"
 
 # Insert the path to M3ED dataset
 #DATA_PATH="/path/to/m3ed"
-DATA_PATH="/mnt/massa2/datasets/m3ed_desc_format/"
+
 # Insert the path to our pretrained weights previous downloaded
 # WEIGHTS_PATH="/path/to/pretrained/weights"
-WEIGHTS_PATH="weights"
+
 # Select your CUDA GPU (Default: 0)
 CUDA_DEVICE=0
 

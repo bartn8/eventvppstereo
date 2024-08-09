@@ -1,19 +1,18 @@
 #!/bin/bash
 
 # Enable and edit the following two lines of code in case you're using conda
-source "$CONDA_PREFIX/../../etc/profile.d/conda.sh"
+# source "$CONDA_PREFIX/../../etc/profile.d/conda.sh"
 # conda activate your_virtual_conda_env
-conda activate evpp
 
 # Enable and edit the following line of code in case you're using virtualenv
 # source "/path/to/your/virtualenv/bin/activate"
 
 # Insert the path to DSEC dataset
-#DATA_PATH="/path/to/dsec"
-DATA_PATH="/mnt/massa1/datasets/dsec"
+# DATA_PATH="/path/to/dsec"
+
 # Insert the path to our pretrained weights previous downloaded
 # WEIGHTS_PATH="/path/to/pretrained/weights"
-WEIGHTS_PATH="weights"
+
 # Select your CUDA GPU (Default: 0)
 CUDA_DEVICE=0
 
