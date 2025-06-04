@@ -103,7 +103,7 @@ Please refer to each section for detailed instructions on setup and execution.
 2. **Build deform_conv**: 
     - Activate your virtual env
     - `cd ./src/components/models/baseline/deform_conv/`
-    - `setup.py build_ext --inplace`
+    - `python setup.py build_ext --inplace`
 
 
 ## :floppy_disk: Datasets
